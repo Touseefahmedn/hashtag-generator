@@ -1,6 +1,24 @@
 {
   "rewrites": [
-    { "source": "/api/generate", "destination": "/api/generate.js" },
-    { "source": "/(.*)", "destination": "/public/index.html" }
+    { "source": "/api/generate", "destination": "/api/generate.js" }
+  ],
+  "headers": [
+    {
+      "source": "/api/generate",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type"
+        }
+      ]
+    }
   ]
 }
