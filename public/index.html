@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hashtag Generator</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; max-width: 600px; margin: auto; background: #f0f2f5; }
+    .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+    button { width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+    #results { margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 8px; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🚀 Hashtag Generator</h2>
+    <input type="text" id="keyword" placeholder="Enter keyword (tech, fitness, food...)">
+    <button onclick="generate()">Generate</button>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    async function generate() {
+      const kw = document.getElementById('keyword').value.trim();
+      if (!kw) return alert('Enter a keyword');
+      const res = await fetch(`/api/generate?keyword=${kw}`);
+      const data = await res.json();
+      document.getElementById('results').innerHTML = `<strong>Hashtags:</strong><br>${data.hashtags.join(' ')}`;
+      document.getElementById('results').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
