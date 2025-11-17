@@ -2,5 +2,20 @@
   "rewrites": [
     { "source": "/api/generate", "destination": "/api/generate.js" },
     { "source": "/(.*)", "destination": "/public/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "ALLOWALL"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
   ]
 }
