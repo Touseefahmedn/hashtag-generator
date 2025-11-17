@@ -44,7 +44,7 @@ Error Response (400):
 
 # Terminal mein:
 git add .
-git commit -m "fix: Allow iframe embedding & CORS"
+git commit -m "fix: Blogger integration with direct API call"
 git push origin main
 
 📱 Embed in Blogger
