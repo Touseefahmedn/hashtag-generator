@@ -42,14 +42,10 @@ Error Response (400):
 
 🛠️ Deploy
 
-# Install Vercel CLI
-npm i -g vercel
-
-# Login (free)
-vercel login
-
-# Deploy to production
-vercel --prod
+# Terminal mein:
+git add .
+git commit -m "fix: Allow iframe embedding & CORS"
+git push origin main
 
 📱 Embed in Blogger
 <iframe src="https://hashtag-generator-rankmine-tools.vercel.app" 
