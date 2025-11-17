@@ -1,5 +1,5 @@
 module.exports = async (req, res) => {
-  // ==== CRITICAL: Add these headers ====
+  // ===== CORS HEADERS (Bilkul Important) =====
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -8,11 +8,16 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-  // ======================================
+  // ===========================================
 
   try {
     const keyword = (req.query.keyword || '').toLowerCase().trim();
-    if (!keyword) return res.status(400).json({ success: false, error: 'Keyword required' });
+    if (!keyword) {
+      return res.status(400).json({
+        success: false,
+        error: 'Keyword parameter is required'
+      });
+    }
 
     const hashtagDB = {
       fitness: ['#FitnessMotivation', '#GymLife', '#Workout', '#FitFam', '#HealthyLifestyle', '#BodyBuilding', '#Cardio', '#FitLife'],
@@ -50,6 +55,10 @@ module.exports = async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({ success: false, error: 'Internal error' });
+    console.error('API Error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error'
+    });
   }
 };
