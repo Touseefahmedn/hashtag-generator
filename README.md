@@ -42,10 +42,14 @@ Error Response (400):
 
 🛠️ Deploy
 
-# Terminal mein:
-git add .
-git commit -m "fix: Blogger integration with direct API call"
-git push origin main
+# Install Vercel CLI
+npm i -g vercel
+
+# Login (free)
+vercel login
+
+# Deploy to production
+vercel --prod
 
 📱 Embed in Blogger
 <iframe src="https://hashtag-generator-rankmine-tools.vercel.app" 
