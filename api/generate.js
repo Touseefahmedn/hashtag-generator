@@ -1,9 +1,14 @@
 module.exports = async (req, res) => {
+  // ==== CRITICAL: Add these headers ====
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  // ======================================
 
   try {
     const keyword = (req.query.keyword || '').toLowerCase().trim();
@@ -43,6 +48,7 @@ module.exports = async (req, res) => {
       hashtags: results.slice(0, 10),
       totalFound: results.length
     });
+
   } catch (error) {
     res.status(500).json({ success: false, error: 'Internal error' });
   }
